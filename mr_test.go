@@ -231,3 +231,35 @@ func TestContains(t *testing.T) {
 	tVal = 5
 	assert.True(t, Contains(ts, tVal, f), "Expected true, but got false")
 }
+
+func TestPaginate(t *testing.T) {
+	// Test case 1: Empty slice
+	ts := []int{}
+	expected := []int{}
+	result := Paginate(ts, 1, 1)
+	assert.Equal(t, expected, result)
+
+	// Test case 2: Slice with 1 element
+	ts = []int{1}
+	expected = []int{}
+	result = Paginate(ts, 2, 1)
+	assert.Equal(t, expected, result)
+
+	// Test case 3: Slice with 2 elements
+	ts = []int{1, 2}
+	expected = []int{2}
+	result = Paginate(ts, 2, 1)
+	assert.Equal(t, expected, result)
+
+	// Test case 4: Slice with 3 elements
+	ts = []int{1, 2, 3}
+	expected = []int{1, 2}
+	result = Paginate(ts, 1, 2)
+	assert.Equal(t, expected, result)
+
+	// Test case 5: Slice with 4 elements
+	ts = []int{1, 2, 3, 4}
+	expected = []int{3, 4}
+	result = Paginate(ts, 2, 2)
+	assert.Equal(t, expected, result)
+}

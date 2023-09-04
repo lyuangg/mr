@@ -96,3 +96,14 @@ func Contains[T any, KEY comparable](ts []T, t T, f func(T) KEY) bool {
 	_, ok := tsMap[f(t)]
 	return ok
 }
+
+func Paginate[T any](list []T, page, size int) []T {
+	offset := (page - 1) * size
+	if offset >= len(list) {
+		return make([]T, 0)
+	}
+	if offset+size >= len(list) {
+		return list[offset:]
+	}
+	return list[offset : offset+size]
+}
