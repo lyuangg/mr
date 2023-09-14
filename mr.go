@@ -1,5 +1,7 @@
 package mr
 
+import "strings"
+
 func Map[T any, R any](ts []T, f func(T) R) []R {
 	nt := make([]R, 0, len(ts))
 	for _, t := range ts {
@@ -106,4 +108,15 @@ func Paginate[T any](list []T, page, size int) []T {
 		return list[offset:]
 	}
 	return list[offset : offset+size]
+}
+
+func Join[T any](list []T, sep string, f func(T) string) string {
+	var builder strings.Builder
+	for i := 0; i < len(list); i++ {
+		if i > 0 {
+			builder.WriteString(sep)
+		}
+		builder.WriteString(f(list[i]))
+	}
+	return builder.String()
 }

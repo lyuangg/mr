@@ -1,6 +1,7 @@
 package mr
 
 import (
+	"strconv"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -262,4 +263,13 @@ func TestPaginate(t *testing.T) {
 	expected = []int{3, 4}
 	result = Paginate(ts, 2, 2)
 	assert.Equal(t, expected, result)
+}
+
+func TestJoin(t *testing.T) {
+	str := Join(test_int_arr, ",", func(i int) string { return strconv.Itoa(i) })
+	assert.Equal(t, "1,2,3,4,5", str)
+
+	ts := []int{}
+	str = Join(ts, ",", func(i int) string { return strconv.Itoa(i) })
+	assert.Empty(t, str)
 }
