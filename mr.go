@@ -120,3 +120,11 @@ func Join[T any](list []T, sep string, f func(T) string) string {
 	}
 	return builder.String()
 }
+
+func Keys[T any, KEY comparable](data map[KEY]T) []KEY {
+	var d []KEY
+	for k := range data {
+		d = append(d, k)
+	}
+	return d
+}

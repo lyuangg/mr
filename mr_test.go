@@ -273,3 +273,14 @@ func TestJoin(t *testing.T) {
 	str = Join(ts, ",", func(i int) string { return strconv.Itoa(i) })
 	assert.Empty(t, str)
 }
+
+func TestKeys(t *testing.T) {
+	td1 := map[string]int64{
+		"a": 1,
+		"b": 2,
+		"c": 3,
+	}
+	actual := Keys(td1)
+	expected := []string{"a", "b", "c"}
+	assert.EqualValuesf(t, expected, actual, "Expected %v atutal %v", expected, actual)
+}
